@@ -1,9 +1,14 @@
 package es.redmic.brokerlib.avro.geodata.tracking.vessels;
 
+import java.util.Map;
+
 import javax.validation.constraints.NotNull;
 
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
+import org.joda.time.format.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class AISTrackingDTO extends org.apache.avro.specific.SpecificRecordBase
 		implements org.apache.avro.specific.SpecificRecord {
@@ -225,6 +230,48 @@ public class AISTrackingDTO extends org.apache.avro.specific.SpecificRecordBase
 
 	public void setEta(String eta) {
 		this.eta = eta;
+	}
+
+	@JsonIgnore
+	public void buildFromMap(Map<String, String> row) {
+
+		this.setMmsi(parseInteger(row.get("MMSI")));
+		this.setTstamp(DateTime.parse(row.get("TSTAMP"), DateTimeFormat.forPattern("yyy-MM-dd HH:mm:ss zzz")));
+		this.setLatitude(parseDouble(row.get("LATITUDE")));
+		this.setLongitude(parseDouble(row.get("LONGITUDE")));
+		this.setCog(parseDouble(row.get("COG")));
+		this.setSog(parseDouble(row.get("SOG")));
+		this.setDraught(parseDouble(row.get("DRAUGHT")));
+		this.setType(parseInteger(row.get("TYPE")));
+		this.setImo(parseInteger(row.get("IMO")));
+		this.setHeading(parseInteger(row.get("HEADING")));
+		this.setNavStat(parseInteger(row.get("NAVSTAT")));
+		this.setName(row.get("NAME"));
+		this.setDest(row.get("DEST"));
+		this.setCallSign(row.get("CALLSIGN"));
+		this.setEta(row.get("ETA"));
+		this.setA(parseDouble(row.get("A")));
+		this.setB(parseDouble(row.get("B")));
+		this.setC(parseDouble(row.get("C")));
+		this.setD(parseDouble(row.get("D")));
+	}
+
+	@JsonIgnore
+	private Double parseDouble(String value) {
+
+		if (value != null) {
+			return Double.parseDouble(value);
+		}
+		return null;
+	}
+
+	@JsonIgnore
+	private Integer parseInteger(String value) {
+
+		if (value != null) {
+			return Integer.parseInt(value);
+		}
+		return null;
 	}
 
 	@Override
