@@ -1,11 +1,12 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
-   		<artifactId>spring-boot-starter-parent</artifactId>
-    	<version>2.0.0.RELEASE</version>
-		<relativePath/>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.0.3.RELEASE</version>
+		<relativePath />
 	</parent>
 
 	<modelVersion>4.0.0</modelVersion>
@@ -14,31 +15,32 @@
 	<packaging>jar</packaging>
 	<version>0.6.0</version>
 	<name>broker-lib</name>
-	
+
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
 		<java.version>1.8</java.version>
-		
+
 		<!-- REDMIC -->
 		<redmic.jackson-jsonschema.version>0.6.0</redmic.jackson-jsonschema.version>
-		
+
 		<!-- OTHERS -->
 		<avro.version>1.8.2</avro.version>
-		<confluent.version>4.0.0</confluent.version>
+		<confluent.version>4.1.0</confluent.version>
+		<kafka.version>1.1.0</kafka.version>
 		<hibernate-validator.version>6.0.8.Final</hibernate-validator.version>
-		
+
 		<!-- Version plugins -->
 		<jacoco.version>0.8.1</jacoco.version>
-		
+
 		<!-- Environment variables -->
 		<env.MAVEN_REPO_URL>https://artifactory.redmic.net/artifactory</env.MAVEN_REPO_URL>
 	</properties>
 
 	<dependencies>
-	
+
 		<dependency>
 			<groupId>es.redmic.lib</groupId>
 			<artifactId>jackson-jsonschema</artifactId>
@@ -66,12 +68,22 @@
 			<groupId>org.springframework.kafka</groupId>
 			<artifactId>spring-kafka</artifactId>
 		</dependency>
+
+		<!-- Override kafkaClient version -->
+
+		<dependency>
+			<groupId>org.apache.kafka</groupId>
+			<artifactId>kafka-clients</artifactId>
+		</dependency>
+		
+		<!--  -->
+
 		<dependency>
 			<groupId>io.confluent</groupId>
 			<artifactId>common-config</artifactId>
 			<version>${confluent.version}</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>io.confluent</groupId>
 			<artifactId>kafka-schema-registry-client</artifactId>
@@ -79,7 +91,7 @@
 			<exclusions>
 				<exclusion>
 					<groupId>com.fasterxml.jackson.core</groupId>
-		   			<artifactId>jackson-databind</artifactId>
+					<artifactId>jackson-databind</artifactId>
 				</exclusion>
 			</exclusions>
 		</dependency>
@@ -103,13 +115,13 @@
 			<artifactId>avro</artifactId>
 			<version>${avro.version}</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-validator</artifactId>
 			<version>${hibernate-validator.version}</version>
 		</dependency>
-		
+
 		<!-- Logs -->
 		<dependency>
 			<groupId>org.apache.logging.log4j</groupId>
@@ -121,7 +133,7 @@
 			<artifactId>log4j-core</artifactId>
 			<scope>provided</scope>
 		</dependency>
-		
+
 		<!-- Test -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -142,6 +154,13 @@
 			<uniqueVersion>false</uniqueVersion>
 		</snapshotRepository>
 	</distributionManagement>
+	<repositories>
+		<repository>
+			<id>confluent</id>
+			<name>Confluent</name>
+			<url>https://packages.confluent.io/maven/</url>
+		</repository>
+	</repositories>
 	<build>
 		<plugins>
 			<plugin>
