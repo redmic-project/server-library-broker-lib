@@ -1,4 +1,4 @@
-package es.redmic.brokerlib.avro.serde;
+package es.redmic.brokerlib.avro.serde.arraylist;
 
 import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
@@ -25,7 +25,7 @@ public class ArrayListSerializer<T> implements Serializer<ArrayList<T>> {
 
 	@Override
 	public void configure(Map<String, ?> configs, boolean isKey) {
-		// do nothing
+		this.serializer.configure(configs, isKey);
 	}
 
 	@Override
@@ -49,6 +49,6 @@ public class ArrayListSerializer<T> implements Serializer<ArrayList<T>> {
 
 	@Override
 	public void close() {
-		// do nothing
+		this.serializer.close();
 	}
 }

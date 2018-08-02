@@ -1,4 +1,4 @@
-package es.redmic.brokerlib.avro.serde;
+package es.redmic.brokerlib.avro.serde.arraylist;
 
 import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
@@ -24,7 +24,7 @@ public class ArrayListDeserializer<T> implements Deserializer<ArrayList<T>> {
 
 	@Override
 	public void configure(Map<String, ?> configs, boolean isKey) {
-		// do nothing
+		this.deserializer.configure(configs, isKey);
 	}
 
 	@SuppressWarnings("unchecked")
@@ -53,6 +53,6 @@ public class ArrayListDeserializer<T> implements Deserializer<ArrayList<T>> {
 
 	@Override
 	public void close() {
-		// do nothing
+		this.deserializer.close();
 	}
 }
