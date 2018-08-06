@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.apache.kafka.common.serialization.Serializer;
+import org.apache.kafka.common.serialization.StringSerializer;
 
 import io.confluent.kafka.serializers.KafkaAvroSerializer;
 
@@ -14,12 +15,15 @@ public class HashMapSerializer<K, V> implements Serializer<HashMap<K, V>> {
 
 	KafkaAvroSerializer serializer;
 
+	StringSerializer stringSerializer;
+
 	// Default constructor needed by Kafka
 	public HashMapSerializer() {
 	}
 
 	public HashMapSerializer(KafkaAvroSerializer serializer) {
 		this.serializer = serializer;
+		this.stringSerializer = new StringSerializer();
 	}
 
 	@Override
@@ -37,7 +41,7 @@ public class HashMapSerializer<K, V> implements Serializer<HashMap<K, V>> {
 			dos.writeInt(size);
 			for (Map.Entry<K, V> entry : queue.entrySet()) {
 
-				final byte[] bytesKey = serializer.serialize(topic, entry.getKey());
+				final byte[] bytesKey = stringSerializer.serialize(topic, entry.getKey().toString());
 				dos.writeInt(bytesKey.length);
 				dos.write(bytesKey);
 
