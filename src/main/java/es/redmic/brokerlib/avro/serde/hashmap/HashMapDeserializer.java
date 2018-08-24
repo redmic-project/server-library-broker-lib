@@ -3,11 +3,11 @@ package es.redmic.brokerlib.avro.serde.hashmap;
 import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
 
 import org.apache.kafka.common.serialization.Deserializer;
-import org.apache.kafka.common.serialization.StringDeserializer;
 
 import io.confluent.kafka.serializers.KafkaAvroDeserializer;
 
@@ -15,15 +15,12 @@ public class HashMapDeserializer<K, V> implements Deserializer<HashMap<K, V>> {
 
 	KafkaAvroDeserializer deserializer;
 
-	StringDeserializer stringDeserializer;
-
 	// Default constructor needed by Kafka
 	public HashMapDeserializer() {
 	}
 
 	public HashMapDeserializer(KafkaAvroDeserializer deserializer) {
 		this.deserializer = deserializer;
-		this.stringDeserializer = new StringDeserializer();
 	}
 
 	@Override
@@ -52,7 +49,7 @@ public class HashMapDeserializer<K, V> implements Deserializer<HashMap<K, V>> {
 				final byte[] valueBytes = new byte[dataInputStream.readInt()];
 				dataInputStream.read(valueBytes);
 
-				hashMap.put((K) stringDeserializer.deserialize(topic, keyBytes),
+				hashMap.put((K) new String(keyBytes, StandardCharsets.UTF_8),
 						(V) deserializer.deserialize(topic, valueBytes));
 			}
 		} catch (IOException e) {
