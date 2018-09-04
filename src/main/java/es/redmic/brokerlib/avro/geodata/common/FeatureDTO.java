@@ -7,10 +7,9 @@ import com.kjetland.jackson.jsonSchema.annotations.JsonSchemaIgnore;
 import com.kjetland.jackson.jsonSchema.annotations.JsonSchemaNotNull;
 import com.vividsolutions.jts.geom.Geometry;
 
-public abstract class FeatureDTO<TProperties extends PropertiesBaseDTO, TGeometry extends Geometry>
-		extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
+import es.redmic.brokerlib.avro.common.CommonDTO;
 
-	private String id;
+public abstract class FeatureDTO<TProperties extends PropertiesBaseDTO, TGeometry extends Geometry> extends CommonDTO {
 
 	private String uuid;
 
@@ -27,14 +26,6 @@ public abstract class FeatureDTO<TProperties extends PropertiesBaseDTO, TGeometr
 
 	public FeatureDTO() {
 
-	}
-
-	public String getId() {
-		return id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
 	}
 
 	public String getUuid() {
