@@ -6,6 +6,10 @@ import com.kjetland.jackson.jsonSchema.annotations.JsonSchemaIgnore;
 
 public abstract class PropertiesDTO extends UpdatablePropertiesDTO {
 
+	public PropertiesDTO() {
+		super();
+	}
+
 	@JsonSchemaIgnore
 	@Size(min = 1, max = 150)
 	private String activityId;
