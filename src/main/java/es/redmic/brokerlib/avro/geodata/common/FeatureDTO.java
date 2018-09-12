@@ -17,7 +17,6 @@ public abstract class FeatureDTO<TProperties extends PropertiesBaseDTO, TGeometr
 	@JsonIgnore
 	protected ObjectMapper mapper = new ObjectMapper().registerModules(new JtsModule());
 
-	@NotNull
 	private String uuid;
 
 	@JsonSchemaIgnore
