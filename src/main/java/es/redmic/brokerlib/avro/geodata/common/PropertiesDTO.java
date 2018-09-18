@@ -12,13 +12,13 @@ public abstract class PropertiesDTO extends UpdatablePropertiesDTO {
 
 	@JsonSchemaIgnore
 	@Size(min = 1, max = 150)
-	private String activityId;
+	private String activity;
 
-	public String getActivityId() {
-		return activityId;
+	public String getActivity() {
+		return activity;
 	}
 
-	public void setActivityId(String activityId) {
-		this.activityId = activityId;
+	public void setActivity(String activity) {
+		this.activity = activity;
 	}
 }
