@@ -1,4 +1,4 @@
-package es.redmic.brokerlib.avro.geodata.common;
+package es.redmic.brokerlib.avro.geodata.utils;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;

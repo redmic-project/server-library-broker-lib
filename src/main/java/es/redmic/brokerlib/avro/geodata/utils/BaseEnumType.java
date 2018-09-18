@@ -1,4 +1,4 @@
-package es.redmic.brokerlib.avro.geodata.common;
+package es.redmic.brokerlib.avro.geodata.utils;
 
 public interface BaseEnumType {
 

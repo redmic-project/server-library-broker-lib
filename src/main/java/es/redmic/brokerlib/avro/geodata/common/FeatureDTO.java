@@ -11,6 +11,7 @@ import com.kjetland.jackson.jsonSchema.annotations.JsonSchemaNotNull;
 import com.vividsolutions.jts.geom.Geometry;
 
 import es.redmic.brokerlib.avro.common.CommonDTO;
+import es.redmic.brokerlib.avro.geodata.utils.GeoJSONFeatureType;
 
 public abstract class FeatureDTO<TProperties extends PropertiesBaseDTO, TGeometry extends Geometry> extends CommonDTO {
 
