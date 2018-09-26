@@ -33,10 +33,32 @@ public abstract class EventTypes {
 		DELETE_CANCELLED = "DELETE_CANCELLED";
 		//@formatter:on
 
+	/**
+	 * Función que identifica si un evento no corresponde con el final de un ciclo
+	 * 
+	 * @param eventType
+	 *            tipo de evento
+	 * @return true si el tipo coincide con un evento final, false en caso contrario
+	 **/
 	protected static boolean isLocked(String eventType) {
 
 		return !(eventType.equals(EventTypes.CREATED.toString()) || eventType.equals(EventTypes.UPDATED.toString())
 				|| eventType.equals(EventTypes.CREATE_CANCELLED.toString())
+				|| eventType.equals(EventTypes.UPDATE_CANCELLED.toString())
+				|| eventType.equals(EventTypes.DELETE_CANCELLED.toString()));
+	}
+
+	/**
+	 * Función que identifica si un evento contiene el último estado correcto del
+	 * elemento
+	 * 
+	 * @param eventType
+	 *            tipo de evento
+	 * @return true si el tipo coincide con snapshot, false en caso contrario
+	 **/
+	protected static boolean isSnapshot(String eventType) {
+
+		return (eventType.equals(EventTypes.CREATED.toString()) || eventType.equals(EventTypes.UPDATED.toString())
 				|| eventType.equals(EventTypes.UPDATE_CANCELLED.toString())
 				|| eventType.equals(EventTypes.DELETE_CANCELLED.toString()));
 	}
