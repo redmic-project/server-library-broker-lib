@@ -27,7 +27,7 @@ public class AlertService {
 	public void errorAlert(String subject, String message) {
 
 		if (PROFILE_ACTIVE.equals("test"))
-			return;
+			ALERT_EMAIL = "test@redmic.es";
 
 		String subjectDefault = "[ERROR][" + PROFILE_ACTIVE + "] ";
 		send(new Message(ALERT_EMAIL, subjectDefault + subject, message, AlertType.ERROR.name()));
