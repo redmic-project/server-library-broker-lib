@@ -59,7 +59,6 @@ public abstract class EventTypes {
 	protected static boolean isSnapshot(String eventType) {
 
 		return (eventType.equals(EventTypes.CREATED.toString()) || eventType.equals(EventTypes.UPDATED.toString())
-				|| eventType.equals(EventTypes.UPDATE_CANCELLED.toString())
-				|| eventType.equals(EventTypes.DELETE_CANCELLED.toString()));
+				|| eventType.equals(EventTypes.DELETED.toString()));
 	}
 }
