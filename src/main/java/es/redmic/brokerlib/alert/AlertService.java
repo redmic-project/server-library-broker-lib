@@ -18,12 +18,18 @@ public class AlertService {
 	@Value("${alert.email}")
 	private String ALERT_EMAIL;
 
+	@Value("${spring.profiles.active}")
+	private String PROFILE_ACTIVE;
+
 	@Autowired
 	private KafkaTemplate<String, Message> kafkaTemplate;
 
 	public void errorAlert(String subject, String message) {
 
-		String subjectDefault = "[ERROR] ";
+		if (PROFILE_ACTIVE.equals("test"))
+			ALERT_EMAIL = "test@redmic.es";
+
+		String subjectDefault = "[ERROR][" + PROFILE_ACTIVE + "] ";
 		send(new Message(ALERT_EMAIL, subjectDefault + subject, message, AlertType.ERROR.name()));
 	}
 

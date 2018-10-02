@@ -6,6 +6,10 @@ import com.kjetland.jackson.jsonSchema.annotations.JsonSchemaNotNull;
 public abstract class CommonDTO extends org.apache.avro.specific.SpecificRecordBase
 		implements org.apache.avro.specific.SpecificRecord {
 
+	public CommonDTO() {
+		super();
+	}
+
 	private String id;
 
 	public String getId() {

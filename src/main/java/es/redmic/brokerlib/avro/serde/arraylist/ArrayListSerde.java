@@ -1,4 +1,4 @@
-package es.redmic.brokerlib.avro.serde;
+package es.redmic.brokerlib.avro.serde.arraylist;
 
 import java.util.ArrayList;
 import java.util.HashMap;
