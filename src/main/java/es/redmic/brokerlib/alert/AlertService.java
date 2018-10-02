@@ -2,6 +2,7 @@ package es.redmic.brokerlib.alert;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.core.KafkaTemplate;
@@ -26,9 +27,6 @@ public class AlertService {
 
 	public void errorAlert(String subject, String message) {
 
-		if (PROFILE_ACTIVE.equals("test"))
-			ALERT_EMAIL = "test@redmic.es";
-
 		String subjectDefault = "[ERROR][" + PROFILE_ACTIVE + "] ";
 		send(new Message(ALERT_EMAIL, subjectDefault + subject, message, AlertType.ERROR.name()));
 	}
@@ -37,6 +35,6 @@ public class AlertService {
 
 		logger.info("sending alert='{}' to topic='{}'", message, ALERT_TOPIC);
 
-		kafkaTemplate.send(ALERT_TOPIC, message);
+		kafkaTemplate.send(ALERT_TOPIC, String.valueOf(DateTime.now().getMillis()), message);
 	}
 }
