@@ -24,7 +24,7 @@ public class AlertService {
 	@Value("${spring.profiles.active}")
 	private String PROFILE_ACTIVE;
 
-	@Value("${info.vessels-commands.name}")
+	@Value("${info.microservice.name}")
 	private String MICROSERVICE_NAME;
 
 	private String subjectDefault;
