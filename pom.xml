@@ -29,8 +29,8 @@
 
 		<!-- OTHERS -->
 		<avro.version>1.8.2</avro.version>
-		<confluent.version>5.0.0</confluent.version>
-		<kafka.version>2.0.0</kafka.version>
+		<confluent.version>5.0.1</confluent.version>
+		<kafka.version>2.0.1</kafka.version>
 		<hibernate-validator.version>6.0.8.Final</hibernate-validator.version>
 		<geotools.version>19.0</geotools.version>
 		<jackson-datatype-jts.version>2.4</jackson-datatype-jts.version>
