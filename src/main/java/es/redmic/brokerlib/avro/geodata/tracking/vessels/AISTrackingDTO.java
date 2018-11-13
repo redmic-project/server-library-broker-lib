@@ -56,7 +56,7 @@ public class AISTrackingDTO extends org.apache.avro.specific.SpecificRecordBase
 
 	private Double draught;
 
-	private Integer type;
+	private Integer type = 0;
 
 	private Double a;
 
