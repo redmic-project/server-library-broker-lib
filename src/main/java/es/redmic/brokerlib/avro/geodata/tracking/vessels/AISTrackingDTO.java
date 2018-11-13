@@ -141,7 +141,11 @@ public class AISTrackingDTO extends org.apache.avro.specific.SpecificRecordBase
 	}
 
 	public void setType(Integer type) {
-		this.type = type;
+
+		if (type == null)
+			this.type = 0;
+		else
+			this.type = type;
 	}
 
 	public Double getA() {
@@ -236,7 +240,7 @@ public class AISTrackingDTO extends org.apache.avro.specific.SpecificRecordBase
 	public void buildFromMap(Map<String, String> row) {
 
 		this.setMmsi(parseInteger(row.get("MMSI")));
-		this.setTstamp(DateTime.parse(row.get("TSTAMP"), DateTimeFormat.forPattern("yyy-MM-dd HH:mm:ss zzz")));
+		this.setTstamp(DateTime.parse(row.get("TSTAMP"), DateTimeFormat.forPattern("yyyy-MM-dd HH:mm:ss zzz")));
 		this.setLatitude(parseDouble(row.get("LATITUDE")));
 		this.setLongitude(parseDouble(row.get("LONGITUDE")));
 		this.setCog(parseDouble(row.get("COG")));
