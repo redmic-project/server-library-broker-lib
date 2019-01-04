@@ -61,4 +61,17 @@ public abstract class EventTypes {
 		return (eventType.equals(EventTypes.CREATED.toString()) || eventType.equals(EventTypes.UPDATED.toString())
 				|| eventType.equals(EventTypes.DELETED.toString()));
 	}
+
+	/**
+	 * Función que identifica si el contenido de un evento puede ser modificado
+	 * 
+	 * @param eventType
+	 *            tipo de evento
+	 * @return true si el tipo coincide con finales de ciclo y no borrado, false en
+	 *         caso contrario
+	 **/
+	protected static boolean isUpdatable(String eventType) {
+
+		return (isSnapshot(eventType) && !eventType.equals(EventTypes.DELETED.toString()));
+	}
 }
