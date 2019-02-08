@@ -11,7 +11,8 @@ public class SendListener implements ListenableFutureCallback<SendResult<String,
 
 	@Override
 	public void onSuccess(SendResult<String, ?> result) {
-		logger.info("Se ha enviado el mensaje con éxito al topic " + result.getRecordMetadata().topic());
+		// logger.info("Se ha enviado el mensaje con éxito al topic " +
+		// result.getRecordMetadata().topic());
 	}
 
 	@Override
