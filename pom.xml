@@ -3,9 +3,9 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
 	<parent>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.1.0.RELEASE</version>
+		<groupId>es.redmic</groupId>
+		<artifactId>server-parent</artifactId>
+		<version>0.3.0</version>
 		<relativePath />
 	</parent>
 
@@ -13,16 +13,10 @@
 	<groupId>es.redmic.lib</groupId>
 	<artifactId>broker-lib</artifactId>
 	<packaging>jar</packaging>
-	<version>0.8.0</version>
+	<version>0.9.0</version>
 	<name>broker-lib</name>
 
 	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<maven.compiler.source>1.8</maven.compiler.source>
-		<maven.compiler.target>1.8</maven.compiler.target>
-		<java.version>1.8</java.version>
-
 		<!-- REDMIC -->
 		<redmic.exceptions.version>0.7.0</redmic.exceptions.version>
 		<redmic.jackson-jsonschema.version>0.7.0</redmic.jackson-jsonschema.version>
@@ -33,12 +27,6 @@
 		<kafka.version>2.0.1</kafka.version>
 		<hibernate-validator.version>6.0.8.Final</hibernate-validator.version>
 		<geotools.version>20.1</geotools.version>
-
-		<!-- Version plugins -->
-		<jacoco.version>0.8.1</jacoco.version>
-
-		<!-- Environment variables -->
-		<env.MAVEN_REPO_URL>https://artifactory.redmic.net/artifactory</env.MAVEN_REPO_URL>
 	</properties>
 
 	<dependencies>
@@ -154,18 +142,6 @@
 			<version>${hibernate-validator.version}</version>
 		</dependency>
 
-		<!-- Logs -->
-		<dependency>
-			<groupId>org.apache.logging.log4j</groupId>
-			<artifactId>log4j-api</artifactId>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.logging.log4j</groupId>
-			<artifactId>log4j-core</artifactId>
-			<scope>provided</scope>
-		</dependency>
-
 		<!-- Test -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -173,48 +149,26 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
-	<distributionManagement>
+	<repositories>
 		<repository>
 			<id>central</id>
-			<name>redmic-releases</name>
-			<url>${env.MAVEN_REPO_URL}/libs-release-local</url>
+			<name>libs-release</name>
+			<url>https://artifactory.redmic.net/artifactory/libs-release</url>
 		</repository>
-		<snapshotRepository>
+		<repository>
 			<id>snapshots</id>
-			<name>redmic-snapshots</name>
-			<url>${env.MAVEN_REPO_URL}/libs-snapshot-local</url>
-			<uniqueVersion>false</uniqueVersion>
-		</snapshotRepository>
-	</distributionManagement>
-	<repositories>
+			<name>libs-snapshot</name>
+			<url>https://artifactory.redmic.net/artifactory/libs-snapshot</url>
+		</repository>
+		<repository>
+			<id>osgeo</id>
+			<name>Open Source Geospatial Foundation Repository</name>
+			<url>http://download.osgeo.org/webdav/geotools/</url>
+		</repository>
 		<repository>
 			<id>confluent</id>
 			<name>Confluent</name>
 			<url>https://packages.confluent.io/maven/</url>
 		</repository>
 	</repositories>
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.jacoco</groupId>
-				<artifactId>jacoco-maven-plugin</artifactId>
-				<version>${jacoco.version}</version>
-				<executions>
-					<execution>
-						<id>pre-unit-test</id>
-						<goals>
-							<goal>prepare-agent</goal>
-						</goals>
-					</execution>
-					<execution>
-						<id>post-unit-test</id>
-						<phase>test</phase>
-						<goals>
-							<goal>report</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-		</plugins>
-	</build>
 </project>
