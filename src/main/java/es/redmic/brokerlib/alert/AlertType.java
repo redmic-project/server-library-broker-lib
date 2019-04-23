@@ -24,6 +24,7 @@ public enum AlertType {
 	// @formatter:off
 	ERROR,
 	WARN,
-	INFO
+	INFO,
+	NIFI_ACTIVITY_MONITOR
 	// @formatter:on
 }
