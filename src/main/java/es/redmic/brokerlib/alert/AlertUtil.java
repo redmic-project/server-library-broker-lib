@@ -20,11 +20,9 @@ package es.redmic.brokerlib.alert;
  * #L%
  */
 
-public enum AlertType {
-	// @formatter:off
-	ERROR,
-	WARN,
-	INFO,
-	NIFI_ACTIVITY_MONITOR
-	// @formatter:on
+public class AlertUtil {
+
+	public static boolean isRealTimeType(String type) {
+		return type.equals(AlertType.NIFI_ACTIVITY_MONITOR.name());
+	}
 }
