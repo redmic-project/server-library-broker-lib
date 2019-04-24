@@ -31,7 +31,7 @@ public class Message extends SpecificRecordBase implements SpecificRecord {
 	public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser()
 			.parse("{\"type\":\"record\",\"name\":\"Message\",\"namespace\":\"es.redmic.brokerlib.alert\","
 					+ "\"fields\":["
-					+ "{\"name\":\"to\",\"type\": \"string\"},"
+					+ "{\"name\":\"to\",\"type\": [\"string\", \"null\"]},"
 					+ "{\"name\":\"subject\",\"type\": \"string\"}," 
 					+ "{\"name\":\"message\",\"type\":\"string\"},"
 					+ "{\"name\":\"type\",\"type\":\"string\"}]}");
@@ -49,11 +49,15 @@ public class Message extends SpecificRecordBase implements SpecificRecord {
 	}
 
 	public Message(String to, String subject, String message, String type) {
-		assert to != null;
+		this(subject, message, type);
+		this.to = to;
+	}
+
+	public Message(String subject, String message, String type) {
+
 		assert subject != null;
 		assert message != null;
 		assert type != null;
-		this.to = to;
 		this.subject = subject;
 		this.message = message;
 		this.type = type;
@@ -100,7 +104,7 @@ public class Message extends SpecificRecordBase implements SpecificRecord {
 	public java.lang.Object get(int field$) {
 		switch (field$) {
 		case 0:
-			return to.toString();
+			return to != null ? to.toString() : null;
 		case 1:
 			return subject.toString();
 		case 2:
@@ -117,7 +121,7 @@ public class Message extends SpecificRecordBase implements SpecificRecord {
 	public void put(int field$, java.lang.Object value$) {
 		switch (field$) {
 		case 0:
-			to = value$.toString();
+			to = value$ != null ? value$.toString() : null;
 			break;
 		case 1:
 			subject = value$.toString();

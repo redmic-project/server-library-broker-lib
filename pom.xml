@@ -13,7 +13,7 @@
 	<groupId>es.redmic.lib</groupId>
 	<artifactId>broker-lib</artifactId>
 	<packaging>jar</packaging>
-	<version>0.9.0</version>
+	<version>0.10.0</version>
 	<name>broker-lib</name>
 
 	<properties>
