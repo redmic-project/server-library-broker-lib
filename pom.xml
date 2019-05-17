@@ -20,7 +20,7 @@
 		<!-- REDMIC -->
 		<redmic.exceptions.version>0.7.0</redmic.exceptions.version>
 		<redmic.jackson-jsonschema.version>0.7.0</redmic.jackson-jsonschema.version>
-		<redmic.jts4jackson.version>0.0.1</redmic.jts4jackson.version>
+		<redmic.jts4jackson.version>0.2.0</redmic.jts4jackson.version>
 		<!-- OTHERS -->
 		<avro.version>1.8.2</avro.version>
 		<confluent.version>5.0.1</confluent.version>
