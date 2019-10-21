@@ -52,6 +52,7 @@ public abstract class EventTypes {
 		DELETE_FAILED = "DELETE_FAILED",
 		DELETE_CANCELLED = "DELETE_CANCELLED",
 		//FAIL
+		PREPARE_ROLLBACK = "PREPARE_ROLLBACK",
 		ROLLBACK = "ROLLBACK";
 		//@formatter:on
 

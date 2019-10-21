@@ -20,31 +20,21 @@ package es.redmic.brokerlib.avro.fail;
  * #L%
  */
 
-import org.apache.avro.Schema;
-
-import es.redmic.brokerlib.avro.common.EventTypes;
 import es.redmic.brokerlib.avro.common.SimpleEvent;
 
-public class RollbackEvent extends SimpleEvent {
+public abstract class BaseRollbackEvent extends SimpleEvent {
 
-	// @formatter:off
+	private String failEventType;
 
-	public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{"
-		+ "\"type\":\"record\",\"name\":\"RollbackEvent\","
-				+ "\"namespace\":\"es.redmic.brokerlib.avro.fail\",\"fields\":["
-			+ getEventBaseSchema() + "]}");
-	
-	// @formatter:on
-
-	static String type = EventTypes.ROLLBACK;
-
-	public RollbackEvent() {
+	public BaseRollbackEvent(String type) {
 		super(type);
 	}
 
-	@Override
-	public Schema getSchema() {
-		return SCHEMA$;
+	public String getFailEventType() {
+		return failEventType;
 	}
 
+	public void setFailEventType(String failEventType) {
+		this.failEventType = failEventType;
+	}
 }
