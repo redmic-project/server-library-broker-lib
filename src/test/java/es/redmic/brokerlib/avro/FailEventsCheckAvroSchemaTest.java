@@ -28,6 +28,7 @@ import java.util.UUID;
 import org.junit.Test;
 
 import es.redmic.brokerlib.avro.fail.PrepareRollbackEvent;
+import es.redmic.brokerlib.avro.fail.RollbackFailedEvent;
 import es.redmic.brokerlib.utils.AvroBaseTest;
 
 public class FailEventsCheckAvroSchemaTest extends AvroBaseTest {
@@ -46,6 +47,23 @@ public class FailEventsCheckAvroSchemaTest extends AvroBaseTest {
 
 		assertTrue("El objeto obtenido debe ser una instancia de PrepareRollbackEvent",
 				PrepareRollbackEvent.class.isInstance(result));
+
+		assertEquals(result, event);
+	}
+
+	@Test
+	public void RollbackFailedEventSerializeAndDeserialize_IsSuccessful_IfSchemaAndDataAreCorrect() {
+
+		RollbackFailedEvent event = new RollbackFailedEvent("failEventType");
+		event.setAggregateId("aggregateId");
+		event.setSessionId(UUID.randomUUID().toString());
+		event.setUserId("userId");
+		event.setVersion(1);
+
+		Object result = serializerAndDeserializer(event);
+
+		assertTrue("El objeto obtenido debe ser una instancia de RollbackFailedEvent",
+				RollbackFailedEvent.class.isInstance(result));
 
 		assertEquals(result, event);
 	}
