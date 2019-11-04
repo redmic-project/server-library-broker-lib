@@ -1,5 +1,7 @@
 package es.redmic.brokerlib.avro.common;
 
+import java.util.Arrays;
+
 /*-
  * #%L
  * broker-lib
@@ -50,7 +52,11 @@ public abstract class EventTypes {
 		DELETE_CONFIRMED = "DELETE_CONFIRMED",
 		DELETED = "DELETED",
 		DELETE_FAILED = "DELETE_FAILED",
-		DELETE_CANCELLED = "DELETE_CANCELLED";
+		DELETE_CANCELLED = "DELETE_CANCELLED",
+		//FAIL
+		PREPARE_ROLLBACK = "PREPARE_ROLLBACK",
+		ROLLBACK = "ROLLBACK",
+		ROLLBACK_FAILED = "ROLLBACK_FAILED";
 		//@formatter:on
 
 	/**
@@ -93,5 +99,22 @@ public abstract class EventTypes {
 	protected static boolean isUpdatable(String eventType) {
 
 		return (isSnapshot(eventType) && !eventType.equals(EventTypes.DELETED.toString()));
+	}
+
+	public static String getEventFailedTypeByActionType(String actionType) {
+
+		if (Arrays.asList(CREATE, ENRICH_CREATE, CREATE_ENRICHED, CREATE_ENRICH_FAILED, CREATE_CONFIRMED, CREATE_FAILED)
+				.contains(actionType)) {
+			return CREATE_FAILED;
+		}
+		if (Arrays.asList(UPDATE, ENRICH_UPDATE, UPDATE_ENRICHED, UPDATE_ENRICH_FAILED, UPDATE_CONFIRMED, UPDATE_FAILED)
+				.contains(actionType)) {
+			return UPDATE_FAILED;
+		}
+		if (Arrays.asList(DELETE, CHECK_DELETE, DELETE_CHECKED, DELETE_CHECK_FAILED, DELETE_CONFIRMED, DELETE_FAILED)
+				.contains(actionType)) {
+			return DELETE_FAILED;
+		}
+		return null;
 	}
 }
