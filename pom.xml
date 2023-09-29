@@ -22,7 +22,7 @@
 		<redmic.jackson-jsonschema.version>0.8.0-feature-changeUrlType</redmic.jackson-jsonschema.version>
 		<redmic.jts4jackson.version>0.2.0</redmic.jts4jackson.version>
 		<!-- OTHERS -->
-		<avro.version>1.8.2</avro.version>
+		<avro.version>1.11.3</avro.version>
 		<confluent.version>5.0.1</confluent.version>
 		<kafka.version>2.0.1</kafka.version>
 		<hibernate-validator.version>6.0.8.Final</hibernate-validator.version>
